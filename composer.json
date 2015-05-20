@@ -1,0 +1,26 @@
+{
+    "name": "jelix/minify-module",
+    "type": "jelix-module",
+    "description": "module providing a Minify features to a Jelix application.",
+    "keywords": ["minify", "concatenation", "js", "css"],
+    "homepage": "http://jelix.org",
+    "license": "LGPL-2.1",
+    "authors": [
+        {
+            "name": "Laurent Jouanneau",
+            "email": "laurent@jelix.org"
+        }
+    ],
+    "require": {
+        "jelix/jelix": "dev-jelix-1.7.x",
+        "mrclay/minify": "2.2.0"
+    },
+    "minimum-stability": "dev",
+    "extra" : {
+        "jelix" : {
+            "modules": [
+                "jminify"
+            ]
+        }
+    }
+}
