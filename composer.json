@@ -12,10 +12,9 @@
         }
     ],
     "require": {
-        "jelix/jelix": "dev-jelix-1.7.x",
         "mrclay/minify": "2.2.0"
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "extra" : {
         "jelix" : {
             "modules": [
