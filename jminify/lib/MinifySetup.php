@@ -65,7 +65,7 @@ class MinifySetup {
         
         if (!isset($min_customConfigPaths)) {
             $min_customConfigPaths = array(
-                'groups' => jApp::configPath('minifyGroupsConfig.php')
+                'groups' => \jApp::configPath('minifyGroupsConfig.php')
             );
         }
     
