@@ -3,7 +3,7 @@ This is a module for Jelix, providing Minify features for HTML response objects.
 This module is for Jelix 1.7.x and higher. See the jelix/jelix repository to see
 its history before Jelix 1.7.
 
-[[http://code.google.com/p/minify/|Minify]] is a library which allow to
+[Minify](http://code.google.com/p/minify/) is a library which allow to
 concatenate and minify CSS and JS files. It improves performance during the load
 of the page. This module provides plugins to integrate it into a Jelix application.
 
