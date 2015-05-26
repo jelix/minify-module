@@ -20,6 +20,9 @@
             "modules": [
                 "jminify"
             ]
+        },
+        "branch-alias": {
+            "dev-master": "1.7.x-dev"
         }
     }
 }
