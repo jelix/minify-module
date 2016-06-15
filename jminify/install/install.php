@@ -15,35 +15,35 @@ class jminifyModuleInstaller extends jInstallerModule {
         if (!$this->firstExec('config')) {
             return;
         }
+        $config = $this->entryPoint->getMainConfigIni();
 
-        $plugins = $this->config->getValue('plugins','jResponseHtml');
+        $plugins = $config->getValue('plugins','jResponseHtml');
         if (strpos($plugins, 'minify') === false) {
             $plugins .= ',minify';
-            $this->config->setValue('plugins',$plugins,'jResponseHtml', null, true);
+            $config->setValue('plugins',$plugins,'jResponseHtml', null, true);
         }
 
-        if (null == $this->config->getValue('minifyCSS','jResponseHtml', null, true)) {
-            $this->config->setValue('minifyCSS','off','jResponseHtml', null, true);
+        if (null == $config->getValue('minifyCSS','jResponseHtml', null, true)) {
+            $config->setValue('minifyCSS','off','jResponseHtml', null, true);
         }
-        if (null == $this->config->getValue('minifyJS','jResponseHtml', null, true)) {
-            $this->config->setValue('minifyJS','on','jResponseHtml', null, true);
+        if (null == $config->getValue('minifyJS','jResponseHtml', null, true)) {
+            $config->setValue('minifyJS','on','jResponseHtml', null, true);
         }
-        if (null == $this->config->getValue('minifyExcludeCSS','jResponseHtml', null, true)) {
-            $this->config->setValue('minifyExcludeCSS','','jResponseHtml', null, true);
+        if (null == $config->getValue('minifyExcludeCSS','jResponseHtml', null, true)) {
+            $config->setValue('minifyExcludeCSS','','jResponseHtml', null, true);
         }
-        if (null == $this->config->getValue('minifyExcludeJS','jResponseHtml', null, true)) {
-            $this->config->setValue('minifyExcludeJS','jelix/wymeditor/jquery.wymeditor.js','jResponseHtml', null, true);
+        if (null == $config->getValue('minifyExcludeJS','jResponseHtml', null, true)) {
+            $config->setValue('minifyExcludeJS','jelix/wymeditor/jquery.wymeditor.js','jResponseHtml', null, true);
         }
 
-        $entrypoint = $this->config->getValue('minifyEntryPoint','jResponseHtml', null, true);
+        $entrypoint = $config->getValue('minifyEntryPoint','jResponseHtml', null, true);
         if ($entrypoint === null) {
-            $this->config->setValue('minifyEntryPoint','minify.php','jResponseHtml', null, true);
+            $config->setValue('minifyEntryPoint','minify.php','jResponseHtml', null, true);
             $entrypoint = 'minify.php';
         }
 
         if (!file_exists(jApp::wwwPath($entrypoint))) {
             $this->copyFile('files/minify.php', jApp::wwwPath($entrypoint));
         }
-
     }
 }
