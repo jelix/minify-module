@@ -4,10 +4,20 @@ namespace Jelix\Minify;
 
 class MinifySetup {
 
+    static function getConfigPaths() {
+        $paths = array(
+                    'base'   => __DIR__.'/config.php',
+                );
+        if (file_exists(\jApp::appConfigPath('minifyGroupsConfig.php'))) {
+            $paths['groups'] = \jApp::appConfigPath('minifyGroupsConfig.php');
+        }
+        return $paths;
+    }
+
     /**
      * set default parameters for Minify
      */
-    static function init() {
+    static function initOptions() {
         global $min_allowDebugFlag;
         global $min_errorLogger;
         global $min_enableBuilder;

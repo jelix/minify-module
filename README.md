@@ -36,7 +36,7 @@ php your_app/install/installer.php
 
 You can use the module.
 
-## Using the module
+## Configuring the module
 
 
 In the configuration file of the application, after the installation you should
@@ -70,10 +70,16 @@ Indicated path should be
 
 Don't indicate full URL (with ```http://```...), they are automatically excluded.
 
-The module installer copy a script ```minify.php``` in your ```www/``` directory. There
-are some options in this file you can set to configure Minify (read the documentation of
-Minify). If you want to choose an other name for this script, indicate its name into the
+
+## Configuring Minify
+
+The module install a copy a script ```minify.php``` in your ```www/``` directory. 
+If you want to choose an other name for this script, indicate its name into the
 option ```minifyEntryPoint```.
+
+The module installer create also ```minifyConfig.php``` and ```minifyGroupsConfig.php``` 
+into the ```app/config``` directory of your application. These are files
+to set Minify native options. Read the documentation of Minify to know options.
 
 ## unit tests
 

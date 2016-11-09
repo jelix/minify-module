@@ -45,5 +45,12 @@ class jminifyModuleInstaller extends jInstallerModule {
         if (!file_exists(jApp::wwwPath($entrypoint))) {
             $this->copyFile('files/minify.php', jApp::wwwPath($entrypoint));
         }
+        if (!file_exists(jApp::appConfigPath('minifyConfig.php'))) {
+            $this->copyFile('files/minifyConfig.php', jApp::appConfigPath('minifyConfig.php'));
+        }
+        if (!file_exists(jApp::appConfigPath('minifyGroupsConfig.php'))) {
+            $this->copyFile('files/minifyGroupsConfig.php', jApp::appConfigPath('minifyGroupsConfig.php'));
+        }
+
     }
 }
