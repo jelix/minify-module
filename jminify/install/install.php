@@ -1,21 +1,21 @@
 <?php
 /**
 * @author      Laurent Jouanneau
-* @copyright   2015 Laurent Jouanneau
+* @copyright   2015-2017 Laurent Jouanneau
 * @link        http://www.jelix.org
 * @licence     GNU Lesser General Public Licence see LICENCE file or http://www.gnu.org/licenses/lgpl.html
 */
 
 /**
  */
-class jminifyModuleInstaller extends jInstallerModule {
+class jminifyModuleInstaller extends jInstallerModule2 {
 
-    function install() {
+    function installEntrypoint(jInstallerEntryPoint2 $entryPoint) {
 
         if (!$this->firstExec('config')) {
             return;
         }
-        $config = $this->entryPoint->getMainConfigIni();
+        $config = $entryPoint->getConfigIni();
 
         $plugins = $config->getValue('plugins','jResponseHtml');
         if (strpos($plugins, 'minify') === false) {
