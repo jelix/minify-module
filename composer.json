@@ -14,6 +14,9 @@
     "require": {
         "mrclay/minify": "2.2.0"
     },
+    "conflict": {
+        "jelix/jelix": "<1.7.0-beta.2"
+    },
     "minimum-stability": "stable",
     "extra" : {
         "jelix" : {
