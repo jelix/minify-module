@@ -8,9 +8,9 @@
 
 /**
  */
-class jminifyModuleInstaller extends jInstallerModule2 {
+class jminifyModuleInstaller extends \Jelix\Installer\ModuleInstaller {
 
-    function installEntrypoint(jInstallerEntryPoint2 $entryPoint) {
+    function installEntrypoint(\Jelix\Installer\EntryPoint $entryPoint) {
 
         if (!$this->firstExec('config')) {
             return;

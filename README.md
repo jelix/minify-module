@@ -4,15 +4,15 @@ This is a module for Jelix, providing Minify features for HTML response objects.
 concatenate and minify CSS and JS files. It improves performance during the load
 of the page. This module provides plugins to integrate it into a Jelix application.
 
-This module is for Jelix 1.7.x and higher. See the jelix/jelix repository to see
-its history before Jelix 1.7.
+This module is for Jelix 2.0.x and higher. See the jelix/jelix repository to see
+its history before Jelix 2.0.
 
 
 ## Installation
 
 
 Install it by hands like any other Jelix modules, or use Composer if you installed
-Jelix 1.7+ with Composer.
+Jelix2.0+ with Composer.
 
 In your project:
 
