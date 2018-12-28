@@ -5,41 +5,35 @@
  * @link        http://www.jelix.org
  * @licence     GNU Lesser General Public Licence see LICENCE file or http://www.gnu.org/licenses/lgpl.html
  */
+use \Jelix\Installer\Module\API\ConfigurationHelpers;
 
 class jminifyModuleConfigurator extends \Jelix\Installer\Module\Configurator {
 
     public function getDefaultParameters()
     {
         return array(
-            'eps'=>array()
+            'eps'=>array('index')
         );
     }
 
-    public function askParameters()
-    {
-        $this->parameters['eps'] = $this->askEntryPoints(
+    public function configure(ConfigurationHelpers $helpers) {
+
+        $this->parameters['eps'] = $helpers->cli()->askEntryPoints(
             'Select entry points on which to setup jminify',
             'classic',
             true
         );
-    }
 
-    public function configure() {
-
-        if (!file_exists(jApp::appConfigPath('minifyConfig.php'))) {
-            $this->copyFile('files/minifyConfig.php', jApp::appConfigPath('minifyConfig.php'));
-        }
-        if (!file_exists(jApp::appConfigPath('minifyGroupsConfig.php'))) {
-            $this->copyFile('files/minifyGroupsConfig.php', jApp::appConfigPath('minifyGroupsConfig.php'));
-        }
+        $helpers->copyFile('files/minifyConfig.php', 'config:minifyConfig.php');
+        $helpers->copyFile('files/minifyGroupsConfig.php', 'config:minifyGroupsConfig.php');
 
         foreach($this->getParameter('eps') as $epId) {
-            $this->configureEntryPoint($epId);
+            $this->configureEntryPoint($helpers, $epId);
         }
     }
 
-    public function configureEntryPoint($epId) {
-        $entryPoint = $this->getEntryPointsById($epId);
+    public function configureEntryPoint(ConfigurationHelpers $helpers, $epId) {
+        $entryPoint = $helpers->getEntryPointsById($epId);
         $config = $entryPoint->getConfigIni();
 
         $plugins = $config->getValue('plugins','jResponseHtml');
@@ -72,22 +66,18 @@ class jminifyModuleConfigurator extends \Jelix\Installer\Module\Configurator {
         }
     }
 
-    public function unconfigure() {
+    public function unconfigure(ConfigurationHelpers $helpers) {
 
-        if (file_exists(jApp::appConfigPath('minifyConfig.php'))) {
-            unlink(jApp::appConfigPath('minifyConfig.php'));
-        }
-        if (file_exists(jApp::appConfigPath('minifyGroupsConfig.php'))) {
-            unlink(jApp::appConfigPath('minifyGroupsConfig.php'));
-        }
+        $helpers->removeFile('config:minifyConfig.php');
+        $helpers->removeFile('config:minifyGroupsConfig.php');
 
         foreach($this->getParameter('eps') as $epId) {
             $this->unconfigureEntryPoint($epId);
         }
     }
 
-    public function unconfigureEntryPoint($epId) {
-        $entryPoint = $this->getEntryPointsById($epId);
+    public function unconfigureEntryPoint(ConfigurationHelpers $helpers, $epId) {
+        $entryPoint = $helpers->getEntryPointsById($epId);
         $config = $entryPoint->getConfigIni();
 
         $plugins = $config->getValue('plugins','jResponseHtml');
