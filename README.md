@@ -20,18 +20,16 @@ In your project:
 composer require "jelix/minify-module"
 ```
 
-Then declare the module into the configuration of your application
+Launch the configurator for your application to enable and configure the module
 
-```ini
-[modules]
-
-jminify.access=1
+```bash
+php yourapp/cmd.php module:configure jminify
 ```
 
 Then run the installer
 
 ```
-php your_app/install/installer.php
+php yourapp/install/installer.php
 ```
 
 You can use the module.

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module xmlns="http://jelix.org/ns/module/1.0">
     <info id="jminify@modules.jelix.org" name="jminify" createdate="2015-05-20">
-        <version date="2017-05-02">1.7.1</version>
+        <version date="2018-12-28">1.7.3</version>
         <label lang="en_US">Minify support</label>
         <description lang="en_US">Provides Minify features for an HTML response</description>
         <license URL="http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html">LGPL 2.1</license>
-        <copyright>2015 Laurent Jouanneau and other contributors</copyright>
+        <copyright>2015-2018 Laurent Jouanneau and other contributors</copyright>
         <creator name="Laurent Jouanneau" email="laurent@jelix.org"/>
         <homepageURL>http://jelix.org</homepageURL>
     </info>
