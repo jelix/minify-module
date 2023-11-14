@@ -8,6 +8,8 @@
 * @licence     GNU Lesser General Public Licence see LICENCE file or http://www.gnu.org/licenses/lgpl.html
 */
 
+use \Jelix\Core\App;
+
 /**
 * plugin for jResponseHTML, which minify css and js files
 */
@@ -38,8 +40,8 @@ class minifyHTMLResponsePlugin implements jIHTMLResponsePlugin {
         if (!($this->response instanceof jResponseHtml))
             return;
 
-        $conf = &jApp::config()->jResponseHtml;
-        $basePath = jApp::urlBasePath();
+        $conf = &App::config()->jResponseHtml;
+        $basePath = App::urlBasePath();
         if (isset($conf['minifyCSS']) && $conf['minifyCSS']) {
             if (isset($conf['minifyExcludeCSS']) && $conf['minifyExcludeCSS']) {
                 $this->excludeCSS = preg_split( '/\s*,\s*/', $conf['minifyExcludeCSS'] );
@@ -119,11 +121,11 @@ class minifyHTMLResponsePlugin implements jIHTMLResponsePlugin {
 
     protected function generateMinifyUrl($urlsList) {
         $entrypoint = 'minify.php';
-        if (isset(jApp::config()->jResponseHtml['minifyEntryPoint']) &&
-            jApp::config()->jResponseHtml['minifyEntryPoint']) {
-            $entrypoint = jApp::config()->jResponseHtml['minifyEntryPoint'];
+        if (isset(App::config()->jResponseHtml['minifyEntryPoint']) &&
+            App::config()->jResponseHtml['minifyEntryPoint']) {
+            $entrypoint = App::config()->jResponseHtml['minifyEntryPoint'];
         }
-        $url = jApp::urlBasePath().$entrypoint.'?f=';
+        $url = App::urlBasePath().$entrypoint.'?f=';
         $url .= implode(',', $urlsList);
         return $url;
     }

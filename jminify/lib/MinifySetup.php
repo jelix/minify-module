@@ -1,6 +1,7 @@
 <?php
 
 namespace Jelix\Minify;
+use \Jelix\Core\App;
 
 class MinifySetup {
 
@@ -8,8 +9,8 @@ class MinifySetup {
         $paths = array(
                     'base'   => __DIR__.'/config.php',
                 );
-        if (file_exists(\jApp::appSystemPath('minifyGroupsConfig.php'))) {
-            $paths['groups'] = \jApp::appSystemPath('minifyGroupsConfig.php');
+        if (file_exists(App::appSystemPath('minifyGroupsConfig.php'))) {
+            $paths['groups'] = App::appSystemPath('minifyGroupsConfig.php');
         }
         return $paths;
     }
@@ -38,7 +39,7 @@ class MinifySetup {
         
         $min_enableBuilder = false;
         
-        $min_cachePath = \jApp::tempPath('minify/');
+        $min_cachePath = App::tempPath('minify/');
         if (!file_exists($min_cachePath)) {
             mkdir($min_cachePath, 0775);
         }
@@ -75,7 +76,7 @@ class MinifySetup {
         
         if (!isset($min_customConfigPaths)) {
             $min_customConfigPaths = array(
-                'groups' => \jApp::configPath('minifyGroupsConfig.php')
+                'groups' => App::configPath('minifyGroupsConfig.php')
             );
         }
     
@@ -86,12 +87,12 @@ class MinifySetup {
         if (isset($_SERVER['DOCUMENT_ROOT']))
             return $_SERVER['DOCUMENT_ROOT'];
 
-        $config = parse_ini_file(\jApp::mainConfigFile());
+        $config = parse_ini_file(App::mainConfigFile());
 
         $urlengine = $config['urlengine'];
 
         if($urlengine['scriptNameServerVariable'] == '') {
-            $urlengine['scriptNameServerVariable'] = \jConfigCompiler::findServerName('.php');
+            $urlengine['scriptNameServerVariable'] = \Jelix\Core\Config\Compiler::findServerName('.php');
         }
         $urlScript = $_SERVER[$urlengine['scriptNameServerVariable']];
         $lastslash = strrpos ($urlScript, '/');
@@ -113,12 +114,12 @@ class MinifySetup {
         }
 
         if ($basepath == '/')
-            return \jApp::wwwPath();
+            return App::wwwPath();
 
-        if(strpos(\jApp::wwwPath(), $basepath) === false){
-            return \jApp::wwwPath();
+        if(strpos(App::wwwPath(), $basepath) === false){
+            return App::wwwPath();
         }
 
-        return substr(\jApp::wwwPath(), 0, - (strlen($basepath)));
+        return substr(App::wwwPath(), 0, - (strlen($basepath)));
     }
 }

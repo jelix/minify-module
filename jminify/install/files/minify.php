@@ -11,7 +11,7 @@
 
 require ('../application.init.php');
 
-\jApp::loadConfig('index/config.ini.php');
+\Jelix\Core\App::loadConfig('index/config.ini.php');
 
 $min_customConfigPaths = \Jelix\Minify\MinifySetup::getConfigPaths();
 

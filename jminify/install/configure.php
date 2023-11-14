@@ -6,6 +6,7 @@
  * @licence     GNU Lesser General Public Licence see LICENCE file or http://www.gnu.org/licenses/lgpl.html
  */
 use \Jelix\Installer\Module\API\ConfigurationHelpers;
+use \Jelix\Core\App;
 
 class jminifyModuleConfigurator extends \Jelix\Installer\Module\Configurator {
 
@@ -61,8 +62,8 @@ class jminifyModuleConfigurator extends \Jelix\Installer\Module\Configurator {
             $entrypointMinify = 'minify.php';
         }
 
-        if (!file_exists(jApp::wwwPath($entrypointMinify))) {
-            $this->copyFile('files/minify.php', jApp::wwwPath($entrypointMinify));
+        if (!file_exists(App::wwwPath($entrypointMinify))) {
+            $helpers->copyFile('files/minify.php', App::wwwPath($entrypointMinify));
         }
     }
 
@@ -97,8 +98,8 @@ class jminifyModuleConfigurator extends \Jelix\Installer\Module\Configurator {
             $config->removeValue('minifyEntryPoint','jResponseHtml');
         }
 
-        if (file_exists(jApp::wwwPath($entrypointMinify))) {
-            unlink(jApp::wwwPath($entrypointMinify));
+        if (file_exists(App::wwwPath($entrypointMinify))) {
+            unlink(App::wwwPath($entrypointMinify));
         }
     }
 
