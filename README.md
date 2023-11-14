@@ -23,7 +23,7 @@ composer require "jelix/minify-module"
 Launch the configurator for your application to enable and configure the module
 
 ```bash
-php yourapp/cmd.php module:configure jminify
+php yourapp/dev.php module:configure jminify
 ```
 
 Then run the installer
@@ -76,7 +76,7 @@ If you want to choose an other name for this script, indicate its name into the
 option ```minifyEntryPoint```.
 
 The module installer create also ```minifyConfig.php``` and ```minifyGroupsConfig.php``` 
-into the ```app/config``` directory of your application. These are files
+into the ```app/system``` directory of your application. These are files
 to set Minify native options. Read the documentation of Minify to know options.
 
 ## unit tests

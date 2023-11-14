@@ -8,8 +8,8 @@ class MinifySetup {
         $paths = array(
                     'base'   => __DIR__.'/config.php',
                 );
-        if (file_exists(\jApp::appConfigPath('minifyGroupsConfig.php'))) {
-            $paths['groups'] = \jApp::appConfigPath('minifyGroupsConfig.php');
+        if (file_exists(\jApp::appSystemPath('minifyGroupsConfig.php'))) {
+            $paths['groups'] = \jApp::appSystemPath('minifyGroupsConfig.php');
         }
         return $paths;
     }
